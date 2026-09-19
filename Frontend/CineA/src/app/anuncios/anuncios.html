@@ -1,0 +1,54 @@
+
+<h2>Creación de Anuncios</h2>
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="input-group mb-1">
+      <span class="input-group-text">Titulo</span> 
+      <input type="text" class="form-control" formControlName="titulo">
+    </div>
+    @if (formulario.get('titulo')?.invalid && formulario.get('titulo')?.touched){
+        <div class="text-danger mb-2">El Titulo es Obligatorio</div>
+    }
+
+    <div class="input-group mb-1">
+      <span class="input-group-text">Descripcion</span> 
+      <input type="text" class="form-control" formControlName="descripcion">
+    </div>
+    @if (formulario.get('descripcion')?.invalid && formulario.get('descripcion')?.touched){
+        <div class="text-danger mb-2">La Descripcion es Obligatorio</div>
+    }
+    
+    <div class="input-group mb-1">
+      <input type="file" class="form-control" accept="image/*" (change)="onImagenSeleccionada($event)">
+    </div>
+    
+    <div class="col-12">
+    <button class="btn btn-primary" type="submit">Crear Anuncio</button>
+    </div>
+    
+</form>
+<br>
+<!-- TABLA QUE MUESTRA LOS REGISTROS -->
+<h2>Consulta de Anuncios</h2>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">idanuncio</th>
+      <th scope="col">titulo</th>
+      <th scope="col">descripcion</th>
+      <th scope="col">fechaPublicacion</th>
+      <th scope="col">imagen</th>
+    </tr>
+  </thead>
+
+    <tbody>
+    @for (anuncios of anuncio; track anuncio.idanuncio) {
+        <tr>
+        <td>{{anuncios.idanuncio}}</td>
+        <td>{{anuncios.titulo}}</td>
+        <td>{{anuncios.descripcion}}</td>
+        <td>{{anuncios.fechaPublicacion}}</td>
+        <td>{{anuncios.imagen}}</td>
+        </tr>
+    }
+   </tbody>
+</table>

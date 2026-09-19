@@ -1,0 +1,25 @@
+<p></p>
+<form [formGroup]="formulario" (ngSubmit)="login()">
+    <div class="mb-3">
+    <label class="form-label">Email:</label>
+    <input type="email" formControlName="correo">
+    @if(formulario.get('email')?.invalid &&
+    formulario.get('email')?.touched){
+        <div class="form-text text-danger">El correo es obligatorio</div>
+    }
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Password:</label>
+    <input type="password" formControlName="contrasena">
+    @if(formulario.get('password')?.invalid &&
+    formulario.get('password')?.touched){
+        <div class="form-text text-danger">El password es obligatorio</div>
+    }
+    <br>
+    <div class="col-12">
+    <button class="btn btn-primary" type="submit">Ingresar</button>
+    </div>
+  </div>
+</form>
+
+

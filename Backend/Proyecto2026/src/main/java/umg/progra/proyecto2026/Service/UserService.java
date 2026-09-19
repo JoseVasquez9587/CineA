@@ -43,12 +43,24 @@ public class UserService {
 	}
 	
 	@GetMapping (path = "/buscar/{correo}/{contrasena}")
-	public List<UserEntity> buscarEmailAndPassword(
-			@PathVariable("correo") String correo_,
-			@PathVariable("contrasena") String contrasena_
+	public List<UserEntity> buscarPasswordAndEmail(
+			@PathVariable("contrasena") String contrasena_,
+			@PathVariable("correo") String correo_
+			
 			) {
 		
-		return ur.findByCorreoAndContrasena(correo_, contrasena_);		
+		return ur.findByContrasenaAndCorreo(contrasena_,correo_);		
+	}
+	
+	@PostMapping (path = "/login")
+	public UserEntity login(@RequestBody UserEntity u) {
+		
+		List <UserEntity> usuario = ur.findByCorreoAndContrasena(u.getCorreo(), u.getContrasena());
+		if (usuario.isEmpty()) {
+			return null;
+		}
+			return usuario.get(0);
+			
 	}
 
 

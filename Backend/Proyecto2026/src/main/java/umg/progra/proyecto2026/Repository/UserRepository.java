@@ -10,6 +10,8 @@ import umg.progra.proyecto2026.Entity.UserEntity;
 @Repository ("usuarioRepository")
 public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	
-	public List<UserEntity> findByCorreoAndContrasena (String correo, String contrasena);
+	public List<UserEntity> findByContrasenaAndCorreo (String contrasena,String correo);
+	
+	public List<UserEntity> findByCorreoAndContrasena(String correo,String contrasena);
 
 }

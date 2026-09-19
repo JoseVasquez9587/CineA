@@ -1,0 +1,91 @@
+<h2>Creación de Usuarios</h2>
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="input-group mb-1">
+      <span class="input-group-text">Usuario</span> 
+      <input type="text" class="form-control" formControlName="nombreusuario">
+    </div>
+    @if (formulario.get('nombreusuario')?.invalid && formulario.get('nombreusuario')?.touched){
+        <div class="text-danger mb-2">El Usuario es Obligatorio</div>
+    }
+
+    <div class="input-group mb-1">
+      <span class="input-group-text">Nombres</span> 
+      <input type="text" class="form-control" formControlName="nombres">
+    </div>
+    @if (formulario.get('nombres')?.invalid && formulario.get('nombres')?.touched){
+        <div class="text-danger mb-2">Ingrese al menos un nombre</div>
+    }
+
+    <div class="input-group mb-1">
+      <span class="input-group-text">Apellidos</span> 
+      <input type="text" class="form-control" formControlName="apellidos">
+    </div>
+
+    <div class="input-group mb-1">
+      <span class="input-group-text">Telefono</span> 
+      <input type="tel" class="form-control" formControlName="telefono" placeholder="1234-5678">
+    </div>
+
+    <div class="input-group mb-1">
+      <span class="input-group-text">Correo</span> 
+      <input type="text" class="form-control" formControlName="correo" placeholder="correo@hotmail.com">
+    </div>
+    @if (formulario.get('correo')?.invalid && formulario.get('correo')?.touched){
+        <div class="text-danger mb-2">El correo es obligatorio</div>
+    }
+
+    <div class="input-group mb-1">
+      <span class="input-group-text">Contrasena</span> 
+      <input type="text" class="form-control" formControlName="contrasena">
+    </div>
+    @if (formulario.get('contrasena')?.invalid && formulario.get('contrasena')?.touched){
+        <div class="text-danger mb-2">La contrasena es obligatoria</div>
+    }
+
+    <select class="form-select" formControlName="idrol">
+        <option value="" disabled>Selecciona un rol</option>
+        <option value="1">1 - Administrador</option>
+        <option value="2">2 - Ventas</option>
+    </select>
+         @if (formulario.get('idrol')?.invalid && formulario.get('idrol')?.touched){
+        <div class="text-danger mb-2">EL idrol es obligatoria</div>
+    }
+
+    <div class="col-12">
+    <button class="btn btn-primary" type="submit">Crear Usuario</button>
+    </div>
+    
+</form>
+
+<br>
+
+<h2>Consulta de Usuarios</h2>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">idusuario</th>
+      <th scope="col">nombreusuario</th>
+      <th scope="col">nombres</th>
+      <th scope="col">apellidos</th>
+      <th scope="col">telefono</th>
+      <th scope="col">correo</th>
+      <th scope="col">contrasena</th>
+      <th scope="col">idrol</th>
+    </tr>
+  </thead>
+
+    <tbody>
+    @for (usuario of usuarios; track usuario.idusuario) {
+        <tr>
+        <td>{{usuario.idusuario}}</td>
+        <td>{{usuario.nombreusuario}}</td>
+        <td>{{usuario.nombres}}</td>
+        <td>{{usuario.apellidos}}</td>
+        <td>{{usuario.telefono}}</td>
+        <td>{{usuario.correo}}</td>
+        <td>{{usuario.contrasena}}</td>
+        <td>{{usuario.idrol}}</td>
+        </tr>
+    }
+   </tbody>
+</table>
